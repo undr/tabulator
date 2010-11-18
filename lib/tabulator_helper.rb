@@ -6,7 +6,7 @@ module TabulatorHelper
     output.join("\n")
   end
   
-  def tabulator(options, &block)
+  def tabulator(options={}, &block)
     partial = options.delete(:partial) || "shared/tabulator"
     tabulator = Base.new(partial.to_s, options, @template)
     yield tabulator
@@ -18,7 +18,7 @@ module TabulatorHelper
     def initialize(partial, options, template)
       @options = {:height => false, :status => false}.merge(options)
       @partial, @template = partial, template
-      @tabs = OrderedHash.new
+      @tabs = {}#::OrderedHash.new
       @status = false
     end
     
@@ -35,7 +35,7 @@ module TabulatorHelper
     end
     
     def build!
-     @template.render(:partial => @partial, :locals => {:tabs => @tabs, :height => @options[:height], :status => @status})
+     @template.concat(@template.render(:partial => @partial, :locals => {:tabs => @tabs, :height => @options[:height], :status => @status}))
     end
   end
 end
