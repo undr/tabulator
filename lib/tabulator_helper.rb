@@ -6,7 +6,7 @@ module TabulatorHelper
     output.join("\n")
   end
   
-  def tabs(options, &block)
+  def tabulator(options, &block)
     partial = options.delete(:partial) || "shared/tabulator"
     tabulator = Base.new(partial.to_s, options, @template)
     yield tabulator
