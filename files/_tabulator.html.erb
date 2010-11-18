@@ -1,0 +1,22 @@
+<% style = height ? " style=\"height:#{height};\"" : "" %>
+<div class="tabulator">
+  <ul class="tabulator_header">
+    <% tabs.each do |id, tab| %>
+    <li<% if tab.active %> class="tabulator_current"<% end %>>
+      <a><%= tab.name %></a>
+    </li>
+    <% end %>
+  </ul>
+  <div class="tabulator_common_block">
+    <% tabs.each do |id, tab| %>
+    <div class="tabulator_inner_block<%= tab.active ? " tabulator_visible" : "" %>" id="<%= id %>"<%= style %>>
+      <%= tab.content %>
+    </div>
+    <% end %>
+    <% if status %>
+    <div class="tabulator_status_block">
+      <%= status %>
+    </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+.tabulator {
+  margin-top: 10px;
+}
+.tabulator ul.tabulator_header {
+	height: 25px;
+	line-height: 25px;
+	margin: 0 0 3px;
+	list-style: none;
+}
+* html ul.tabulator_header {margin-bottom: 0;}
+.tabulator ul.tabulator_header li {
+	float: left;
+	margin-right: 1px;
+}
+.tabulator ul.tabulator_header li a {
+	display: block;
+	padding: 0 13px 1px;
+	margin-bottom: -1px;
+	color: #444;
+	text-decoration: none;
+	cursor: pointer;
+	background: #F9F9F9;
+	border: 1px solid #EFEFEF;
+	border-bottom: 1px solid #F9F9F9;
+	position: relative;
+}
+* html ul.tabulator_header li a {float: left}
+*+html ul.tabulator_header li a {float: left}
+.tabulator ul.tabulator_header li a:hover {
+	color: #F70;
+	padding: 0 13px;
+	background: #FFFFDF;
+	border: 1px solid #FFCA95;
+}
+.tabulator ul.tabulator_header li.tabulator_current a {
+	color: #444;
+	background: #EFEFEF;
+	padding: 0px 13px 2px;
+	border: 1px solid #DDD;
+	border-bottom: 1px solid #EFEFEF;
+}
+.tabulator .tabulator_common_block {
+  border: 1px solid #FFCA95;
+  background: #EFEFEF;
+  padding: 2px;
+}
+.tabulator .tabulator_common_block .tabulator_inner_block {
+  display: none;
+  padding: 10px;
+  background: white;
+  border: 1px solid #FFCA95;
+  overflow: auto;
+}
+.tabulator .tabulator_common_block .tabulator_visible {
+  display: block;
+}
+.tabulator .tabulator_common_block .tabulator_status_block {
+  padding: 0 5px 0 5px;
+}
+.tabulator .tabulator_common_block .tabulator_status_block a {
+  color: #444;
+}
