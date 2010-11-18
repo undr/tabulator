@@ -2,7 +2,7 @@ h2. Introduction
 
 This plugin provides a simplest way to add tabs controls in your apps.
 
-"http://dimox.name/universal-jquery-tabs-script/":http://dimox.name/universal-jquery-tabs-script/
+I took the idea from "here":http://dimox.name/universal-jquery-tabs-script/ and implemented it as a Rails plugin
 
 h2. Installation
 
