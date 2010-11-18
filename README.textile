@@ -1,30 +1,39 @@
 h2. Introduction
 
+This plugin provides a simplest way to add tabs controls in your apps.
+
 "http://dimox.name/universal-jquery-tabs-script/":http://dimox.name/universal-jquery-tabs-script/
 
 h2. Installation
 
-<pre><code>rake tabulator:install
+First of all, your app's header has to include the jquery file. Something like this:
+
+<pre><code><%= javascript_include_tag "jquery" %></code></pre>
+
+Second, install plugin and run rake task
+
+<pre><code>script/plugin install git://github.com/undr/tabulator.git
+rake tabulator:install
 </code></pre>
 
 h2. Uninstall
 
-<pre><code>rake tabulator:uninstall
+<pre><code>rake tabulator:remove
 </code></pre>
 
-h2. Example
+h2. Usage
 
 <pre><code><% content_for :head do %>
   <%= tabulator_init %>
 <% end %>
 
-<%= tabulator do |t| %>
+<% tabulator do |t| %>
   <% t.tab(:id => :one, :name => "One") do %>
     Some text
   <% end %>
-  <% t.tab({:id => :two, :name => "Two", :active = true}, render(:partial => "some_template", :locals => {})) %>
-  <% t.tab({:id => :three, :name => "Three"}, "Some text") %>
-  <% t.status("Some status text")
+  <% t.tab({:id => :two, :name => "Two", :active => true}, render(:partial => "some_template", :locals => {:number => "Two"})) %>
+  <% t.tab({:id => :three, :name => "Three"}, "Some text & <b>HTML</b>") %>
+  <% t.status("Some status text") %>
 <% end %>
 </code></pre>
 
