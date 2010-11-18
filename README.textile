@@ -1,6 +1,6 @@
 h2. Introduction
 
-http://dimox.name/universal-jquery-tabs-script/
+"http://dimox.name/universal-jquery-tabs-script/":http://dimox.name/universal-jquery-tabs-script/
 
 h2. Installation
 
