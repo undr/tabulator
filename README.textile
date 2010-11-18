@@ -1,14 +1,17 @@
 h2. Installation
+
 <pre><code>
     rake tabulator:install
 </code></pre>
 
 h2. Uninstall
+
 <pre><code>
     rake tabulator:uninstall
 </code></pre>
 
 h2. Example
+
 <pre><code>
     <% content_for :head do %>
       <%= tabulator_init %>
