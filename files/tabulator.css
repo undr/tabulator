@@ -40,7 +40,7 @@
   border-bottom: 1px solid #EFEFEF;
 }
 .tabulator .tabulator_common_block {
-  border: 1px solid #FFCA95;
+  border: 1px solid #DDDDDD;
   background: #EFEFEF;
   padding: 2px;
 }
@@ -48,7 +48,7 @@
   display: none;
   padding: 10px;
   background: white;
-  border: 1px solid #FFCA95;
+  border: 1px solid #DDDDDD;
   overflow: auto;
 }
 .tabulator .tabulator_common_block .tabulator_visible {
