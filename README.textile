@@ -2,7 +2,7 @@ h2. Introduction
 
 This plugin provides a simplest way to add tabs controls in your apps.
 
-I took the idea from "here":http://dimox.name/universal-jquery-tabs-script/ and implemented it as a Rails plugin
+I took the idea from "here":http://dimox.name/universal-jquery-tabs-script/ and implemented it as a Rails plugin.
 
 h2. Installation
 
@@ -18,8 +18,12 @@ rake tabulator:install
 
 h2. Uninstall
 
+Run rake task
+
 <pre><code>rake tabulator:remove
 </code></pre>
+
+and remove folder with plugin
 
 h2. Usage
 
@@ -28,13 +32,26 @@ h2. Usage
 <% end %>
 
 <% tabulator do |t| %>
-  <% t.tab(:id => :one, :name => "One") do %>
-    Some text
-  <% end %>
-  <% t.tab({:id => :two, :name => "Two", :active => true}, render(:partial => "some_template", :locals => {:number => "Two"})) %>
-  <% t.tab({:id => :three, :name => "Three"}, "Some text & <b>HTML</b>") %>
+  <% t.tab(:tab_id1, "Tab title #1") do -%>
+    Some content for tab #1
+  <% end -%>
+  <% t.tab(:tab_id2, "Tab title #2", true) do -%> # An active tab
+    Some content for tab #2
+  <% end -%>
+<% end %>
+
+<% tabulator do |t| %>
+  <% t.tab(:tab_id3, "Tab title #1", render(:partial => "some_template", :locals => {:number => 5})) -%>
+  <% t.tab(:tab_id4, "Tab title #2", render(:partial => "some_template"), true) -%> # An active tab
+  <% t.status("Some status text") %>
+<% end %>
+
+<% tabulator(:partial => "my_own_tabs_template", :height => "400px") do |t| %>
+  <% t.tab(:tab_id5, "Tab title #1", "Some content for tab #1" -%>
+  <% t.tab(:tab_id6, "Tab title #2", "Some content for tab #1", true) -%> # An active tab
   <% t.status("Some status text") %>
 <% end %>
 </code></pre>
+
 
 Copyright (c) 2010 undr, released under the MIT license
