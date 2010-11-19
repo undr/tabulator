@@ -22,11 +22,30 @@ module TabulatorHelper
       @status = false
     end
     
-    def tab(options, content="", &block)
+    # === Example
+    # 
+    #   <% t.tab(:tab_id, "Tab title") do -%>
+    #     Some content
+    #   <% end -%>
+    # 
+    #   <% t.tab(:tab_id, "Tab title", true) do -%>
+    #     Some content
+    #   <% end -%>
+    # 
+    #   <% t.tab(:tab_id, "Tab title", "Some content") -%>
+    # 
+    #   <% t.tab(:tab_id, "Tab title", "Some content", true) -%>
+    # 
+    def tab(id, name, content_or_active="", active=false, &block)
+      if content_or_active.is_a?(::String)
+        content = content_or_active
+      elsif content_or_active.is_a?(::TrueClass)
+        active = content_or_active
+      else
+        content = ""
+      end
       content = @template.capture(&block) if block_given?
-      id = options.delete(:id)
-      name = options.delete(:name)
-      active = options.delete(:active) || false
+      
       @tabs[id] = Tab.new(name, active, content)
     end
     
