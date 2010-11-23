@@ -50,7 +50,8 @@ module TabulatorHelper
       @tabs[id] = Tab.new(name, active, content)
     end
     
-    def status(content)
+    def status(content="", &block)
+      content = @template.capture(&block) if block_given?
       @status = content
     end
     
