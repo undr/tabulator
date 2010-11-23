@@ -2,8 +2,8 @@ require "pp"
 module TabulatorHelper
   def tabulator_init
     output = []
-    output << stylesheet_link_tag('/stylesheets/tabulator.css')
-    output << javascript_include_tag('/javascripts/tabulator.js')
+    output << stylesheet_link_tag('tabulator')
+    output << javascript_include_tag('tabulator')
     output.join("\n")
   end
   
