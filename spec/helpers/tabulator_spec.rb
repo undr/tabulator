@@ -22,7 +22,7 @@ end
 
 describe "tabulator" do
   before(:each) do
-    @template = mock()
+    @template = mock("template")
     @template.expects(:concat).with("").returns("")
   end
   context "called with default options" do
