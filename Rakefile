@@ -1,16 +1,13 @@
-require 'rake'
-require 'rake/testtask'
+gem 'activesupport', ">=2.3.8"
+require 'spec/rake/spectask'
 require 'rake/rdoctask'
 
-desc 'Default: run unit tests.'
-task :default => :test
+desc 'Default: run all specs'
+task :default => :spec
 
-desc 'Test the tabulator plugin.'
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
-  t.libs << 'test'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = true
+desc 'Run all application-specific specs'
+Spec::Rake::SpecTask.new(:spec) do |t|
+  # t.rcov = true
 end
 
 desc 'Generate documentation for the tabulator plugin.'

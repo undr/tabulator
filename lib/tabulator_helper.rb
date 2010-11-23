@@ -1,3 +1,4 @@
+require "pp"
 module TabulatorHelper
   def tabulator_init
     output = []
