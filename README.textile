@@ -16,7 +16,7 @@ Second, install plugin and run rake task
 rake tabulator:install
 </code></pre>
 
-h2. Uninstall
+h2. Uninstallation
 
 Run rake task
 
