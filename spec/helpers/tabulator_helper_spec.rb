@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper'
-ActionView::Base.base_view_path = File.dirname(__FILE__) + '/../views'
+
 describe TabulatorHelper do
   describe "tabulator_init" do
     before(:each) do
