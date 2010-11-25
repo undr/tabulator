@@ -21,6 +21,7 @@ class FakeRenderer
   def output_buffer
     @output_buffer ||= ""
   end
+  
   def method_missing(m, *args, &block)
     @mock.send(m, *args, &block)
   end
@@ -51,3 +52,6 @@ class RenderCalls
   end
 end
 
+def my_eval_erb(text)
+  ERB.new(text, nil, nil, '@template.output_buffer').result(binding)
+end

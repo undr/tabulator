@@ -15,7 +15,7 @@ describe "tabulator" do
   
   context "called with args" do
     before(:each) do
-      @template = FakeRenderer.new(prepare_template_mock)
+      @template = prepare_template_mock
     end
     
     it "should call method render for @template with custom :partial option" do
@@ -39,6 +39,11 @@ describe "tabulator" do
       tabulator(:partial => "my_tabulator", :height => "200px") do |t| 
         t.status("Some status content")
       end.should == ""
+    end
+  end
+  context "called with args" do
+    before(:each) do
+      @template = FakeRenderer.new(prepare_template_mock)
     end
     
     it "should call method render for @template with tabs" do
@@ -105,10 +110,6 @@ describe "tabulator" do
       options[:locals][:height].should == "200px"
     end
   end
-end
-
-def my_eval_erb(text)
-  ERB.new(text, nil, nil, '@template.output_buffer').result(binding)
 end
 
 def prepare_template_mock(as_null_object=false)
