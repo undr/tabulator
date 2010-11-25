@@ -9,5 +9,5 @@ RAILS_ENV = 'test'
 require 'spec/rails'
 gem "mocha", ">= 0.9.8"
 require "mocha"
-
+require File.dirname(__FILE__) + '/fake_renderer'
 require File.dirname(__FILE__) + '/../lib/tabulator_helper'

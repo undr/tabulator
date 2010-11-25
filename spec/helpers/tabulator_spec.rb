@@ -1,35 +1,10 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 include TabulatorHelper
 
-class RenderCalls
-  class << self
-    def add(options, locals)
-      calls << {:options => options, :locals => locals}
-    end
-    
-    def last
-      calls.last
-    end
-    
-    def last_options
-      last[:options]
-    end
-    
-    def last_locals
-      last[:locals]
-    end
-    
-    private
-    def calls
-      @calls ||= []
-    end
-  end
-end
-
 describe "tabulator" do
   context "called without args" do
     before(:each) do
-      @template = prepare_template
+      @template = prepare_template_mock
     end
     
     it "should call method render @template with default options" do
@@ -40,7 +15,7 @@ describe "tabulator" do
   
   context "called with args" do
     before(:each) do
-      @template = prepare_template
+      @template = FakeRenderer.new(prepare_template_mock)
     end
     
     it "should call method render for @template with custom :partial option" do
@@ -67,9 +42,6 @@ describe "tabulator" do
     end
     
     it "should call method render for @template with tabs" do
-      def @template.render(options = {}, locals = {}, &block)
-        RenderCalls.add(options, locals) && ""
-      end 
       tabulator do|t| 
         t.tab(:tab_id1, "Tab title 1", "Content for :tab_id1")
         t.tab(:tab_id2, "Tab title 2", "Content for :tab_id2", true)
@@ -86,26 +58,7 @@ describe "tabulator" do
   
   context "called with blocks in tab() and status() methods" do
     before(:each) do
-      @template = prepare_template(true)
-      
-      def @template.render(options = {}, locals = {}, &block)
-        RenderCalls.add(options, locals) && ""
-      end
-      
-      def @template.capture(*args, &block)
-        self.output_buffer, old_buffer = "", self.output_buffer
-        block.call
-      ensure
-        self.output_buffer = old_buffer
-      end
-      
-      def @template.output_buffer=(txt)
-        @output_buffer = txt
-      end
-      
-      def @template.output_buffer
-        @output_buffer ||= ""
-      end
+      @template = FakeRenderer.new(prepare_template_mock(true))
     end
     
     it "should call method render for @template with tab, status and default options" do
@@ -129,6 +82,7 @@ describe "tabulator" do
       options[:locals][:status].should match(/Status/)
       options[:locals][:height].should == false
     end
+    
     it "should call method render for @template with tab, status and defined options" do
       my_eval_erb(%(
         <% tabulator(:partial => "my_tabulator", :height => "200px") do |t| %>
@@ -157,7 +111,7 @@ def my_eval_erb(text)
   ERB.new(text, nil, nil, '@template.output_buffer').result(binding)
 end
 
-def prepare_template(as_null_object=false)
+def prepare_template_mock(as_null_object=false)
   template = mock("template")
   template.as_null_object if as_null_object
   template.expects(:concat).with("").returns("")
